@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseRegistrationApp.Data.MockRepo
 {
-    public class MockStudentRepo : IStudentRepo
+    public class MockStudentsRepo : IStudentRepo
     {
         private readonly static List<Student> _students = new List<Student> { 
             new Student{S_FirstName = "John", S_LastName = "Lenon", S_Email = "johnLenon@gmail.com", S_PhoneNumber = "123-456-67890"},

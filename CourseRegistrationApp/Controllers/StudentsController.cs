@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace CourseRegistrationApp.Controllers
 {
-    public class StudentController : Controller
+    public class StudentsController : Controller
     {
         private readonly IStudentRepo _studentRepo;
 
-        public StudentController(IStudentRepo studRepo)
+        public StudentsController(IStudentRepo studRepo)
         {
             _studentRepo = studRepo;
         }
