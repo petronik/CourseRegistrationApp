@@ -1,0 +1,53 @@
+﻿@model IEnumerable<CourseRegistrationApp.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Students</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.S_FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.S_LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.S_Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.S_PhoneNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.S_FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.S_LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.S_Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.S_PhoneNumber)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

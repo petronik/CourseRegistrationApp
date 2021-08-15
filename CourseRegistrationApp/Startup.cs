@@ -1,3 +1,5 @@
+using CourseRegistrationApp.Data.Interfaces;
+using CourseRegistrationApp.Data.MockRepo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +26,7 @@ namespace CourseRegistrationApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IStudentRepo, MockStudentRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
