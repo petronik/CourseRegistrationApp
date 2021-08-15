@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Courses>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Courses</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.C_CourseId)
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.C_CourseNumber)*@
+                Number
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.C_CourseName)*@
+                Name Of The Course
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.C_CourseDescrip)*@
+                Description
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_CourseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_CourseNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.C_CourseDescrip)
+            </td>
+            <td>
+                @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

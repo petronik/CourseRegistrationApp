@@ -27,6 +27,7 @@ namespace CourseRegistrationApp
         {
             services.AddControllersWithViews();
             services.AddScoped<IStudentRepo, MockStudentRepo>();
+            services.AddScoped<ICoursesRepo, MockCoursesRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
