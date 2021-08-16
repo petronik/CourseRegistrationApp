@@ -11,16 +11,13 @@ namespace CourseRegistrationApp.Controllers
     public class StudentsController : Controller
     {
         private readonly IStudentRepo _studentRepo;
-        private readonly ICoursesRepo _courseRepo;
 
-        public StudentsController(IStudentRepo studRepo, ICoursesRepo coursRepo)
+        public StudentsController(IStudentRepo studRepo)
         {
             _studentRepo = studRepo;
-            _courseRepo = coursRepo;
         }
         public ActionResult Index()
         {
-            var course = _courseRepo.GetAllCourses();
             var list = _studentRepo.GetAllStudents().ToList();
             return View(list);
         }

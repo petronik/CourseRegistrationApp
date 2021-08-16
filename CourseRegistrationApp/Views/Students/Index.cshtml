@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CourseRegistrationApp.Models.Courses>
+﻿@model IEnumerable<CourseRegistrationApp.Models.Student>
 
 @{
     ViewData["Title"] = "Index";
@@ -9,20 +9,23 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.S_FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.S_LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.S_Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.S_PhoneNumber)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.C_CourseId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.C_CourseNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.C_CourseName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.C_CourseDescrip)
             </th>
             <th></th>
         </tr>
@@ -31,16 +34,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.S_FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.S_LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.S_Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.S_PhoneNumber)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.C_CourseId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.C_CourseNumber)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.C_CourseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.C_CourseDescrip)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |

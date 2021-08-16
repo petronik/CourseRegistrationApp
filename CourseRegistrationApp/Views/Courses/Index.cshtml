@@ -9,7 +9,7 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>
@@ -37,7 +37,9 @@
                 @Html.DisplayFor(modelItem => item.C_CourseNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.C_CourseName)
+                <span style="cursor:pointer">
+                    @Html.DisplayFor(modelItem => item.C_CourseName)
+                </span>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.C_CourseDescrip)

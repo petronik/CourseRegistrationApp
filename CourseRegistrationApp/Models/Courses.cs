@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,10 +8,16 @@ namespace CourseRegistrationApp.Models
 {
     public class Courses
     {
+        [DisplayName("Course Id")]
         public int C_CourseId { get; set; }
+        [DisplayName("Number")]
         public int C_CourseNumber { get; set; }
+        [DisplayName("Name")]
         public string C_CourseName { get; set; }
+        [DisplayName("Description")]
         public string C_CourseDescrip { get; set; }
+
+        public Student Students { get; set; }
 
     }
 }
