@@ -17,8 +17,7 @@ namespace CourseRegistrationApp.Controllers
         }
         public IActionResult Index()
         {
-            var list = _coursesRepo.GetAllCourses();
-            return View(list);
+            return View(_coursesRepo.GetAllCourses());
         }
     }
 }

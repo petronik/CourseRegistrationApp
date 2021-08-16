@@ -11,6 +11,8 @@ namespace CourseRegistrationApp.Models
         public string S_LastName { get; set; }
         public string S_Email { get; set; }
         public string S_PhoneNumber { get; set; }
+        public int? C_CourseId { get; set; }
+        public Courses Course { get; set; }
 
     }
 }
