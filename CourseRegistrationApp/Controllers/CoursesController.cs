@@ -23,13 +23,28 @@ namespace CourseRegistrationApp.Controllers
             var list = _coursesRepo.GetAllCourses()
                 .Select(c =>
                 {
-                    c.Students = students.Where(s => s.C_CourseId == c.C_CourseId)
-                                            .FirstOrDefault();
+                    c.Students = students
+                                    .Where(s => s.C_CourseId == c.C_CourseId)
+                                    .FirstOrDefault() ?? new Models.Student { 
+                                        
+                                    };
                     return c;
                 })
 
                 .ToList();
             return View(list);
+        }
+        public IEnumerable<string> GetStudentsByCourseId(int? id)
+        {
+            var res = _studentRepo.GetAllStudents()
+                                   .Where(s => s.C_CourseId == id)
+                                   .Select(s => s.S_FirstName + s.S_LastName + "\n");
+            if(res == null || res.Count() == 0)
+            {
+                return new List<string> { "No Students On This Course." };
+            }
+
+            return res;
         }
     }
 }
