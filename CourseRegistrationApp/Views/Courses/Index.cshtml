@@ -87,7 +87,7 @@
     function showStudents(id, name) {
         console.log(id);
 
-        $.get("@Url.Action("GetStudentsByCourseId", "Student")/" + id,
+        $.get("@Url.Action("GetStudentsByCourseId", "Courses")/" + id,
             function (data) {
                 $("#exampleModalLabel").html("Students of " + name);
                 console.log(data);

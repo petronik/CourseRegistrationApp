@@ -38,7 +38,7 @@ namespace CourseRegistrationApp.Controllers
         {
             var res = _studentRepo.GetAllStudents()
                                    .Where(s => s.C_CourseId == id)
-                                   .Select(s => s.S_FirstName + s.S_LastName + "\n");
+                                   .Select(s => s.S_FirstName + " " + s.S_LastName + "<br>");
             if(res == null || res.Count() == 0)
             {
                 return new List<string> { "No Students On This Course." };
