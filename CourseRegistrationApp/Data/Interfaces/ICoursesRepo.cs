@@ -9,5 +9,6 @@ namespace CourseRegistrationApp.Data.Interfaces
     public interface ICoursesRepo
     {
         IEnumerable<Courses> GetAllCourses();
+        void CreateVendor(Courses input);
     }
 }

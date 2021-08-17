@@ -16,6 +16,13 @@ namespace CourseRegistrationApp.Data.MockRepo
             new Courses { C_CourseId = 103, C_CourseNumber = 2420, C_CourseName = "Programming", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
             new Courses { C_CourseId = 104, C_CourseNumber = 2430, C_CourseName = "Mathematics", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
         };
+
+        public void CreateVendor(Courses input)
+        {
+            int code = _courses.Max(c => c.C_CourseId) + 1;
+            _courses.Add(input);
+        }
+
         public IEnumerable<Courses> GetAllCourses()
         {
             return _courses;

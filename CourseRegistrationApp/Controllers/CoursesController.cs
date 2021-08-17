@@ -1,4 +1,5 @@
 ﻿using CourseRegistrationApp.Data.Interfaces;
+using CourseRegistrationApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -25,8 +26,8 @@ namespace CourseRegistrationApp.Controllers
                 {
                     c.Students = students
                                     .Where(s => s.C_CourseId == c.C_CourseId)
-                                    .FirstOrDefault() ?? new Models.Student { 
-                                        
+                                    .FirstOrDefault() ?? new Models.Student {
+                                        S_FirstName = "n/a"
                                     };
                     return c;
                 })
@@ -45,6 +46,18 @@ namespace CourseRegistrationApp.Controllers
             }
 
             return res;
+        }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Courses input)
+        {
+            _coursesRepo.CreateVendor(input);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
