@@ -1,8 +1,10 @@
 using CourseRegistrationApp.Data.Interfaces;
 using CourseRegistrationApp.Data.MockRepo;
+using CourseRegistrationApp.Data.SqlRepo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +28,10 @@ namespace CourseRegistrationApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddDbContext<AppDbContext>(options => {
+                var connectionString = Configuration.GetConnectionString("Default");
+                options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+            });
             services.AddScoped<IStudentRepo, MockStudentsRepo>();
             services.AddScoped<ICoursesRepo, MockCoursesRepo>();
             services.AddScoped<IInstructorsRepo, MockInstructorsRepo>();

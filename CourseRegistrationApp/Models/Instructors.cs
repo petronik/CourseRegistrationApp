@@ -8,12 +8,14 @@ namespace CourseRegistrationApp.Models
 {
     public class Instructors
     {
+        [DisplayName("Instructor Id")]
+        public int I_Id { get; set; }
         [DisplayName("First Name")]
-        public string S_FirstName { get; set; }
+        public string I_FirstName { get; set; }
         [DisplayName("Last Name")]
-        public string S_LastName { get; set; }
+        public string I_LastName { get; set; }
         [DisplayName("Email")]
-        public string S_Email { get; set; }
+        public string I_Email { get; set; }
         [DisplayName("Course ID")]
         public int? C_CourseId { get; set; }
         public Courses Course { get; set; }

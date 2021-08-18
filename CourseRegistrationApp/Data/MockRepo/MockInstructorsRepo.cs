@@ -11,10 +11,10 @@ namespace CourseRegistrationApp.Data.MockRepo
     {
         private readonly static List<Instructors> _instructors = new List<Instructors>
         {
-            new Instructors{S_FirstName = "John", S_LastName = "Doe", S_Email = "johndoe@gmail.com", C_CourseId = 101},
-            new Instructors{S_FirstName = "Bella", S_LastName = "Mandella", S_Email = "bellamandella@gmail.com", C_CourseId = 104},
-            new Instructors{S_FirstName = "Paul", S_LastName = "Fisher", S_Email = "paulfisher@gmail.com", C_CourseId = 102},
-            new Instructors{S_FirstName = "Simon", S_LastName = "Hill", S_Email = "simonhil@gmail.com", C_CourseId = 103}
+            new Instructors{I_Id = 2500,I_FirstName = "John", I_LastName = "Doe", I_Email = "johndoe@gmail.com", C_CourseId = 101},
+            new Instructors{I_Id = 2500,I_FirstName = "Bella", I_LastName = "Mandella", I_Email = "bellamandella@gmail.com", C_CourseId = 104},
+            new Instructors{I_Id = 2500,I_FirstName = "Paul", I_LastName = "Fisher", I_Email = "paulfisher@gmail.com", C_CourseId = 102},
+            new Instructors{I_Id = 2500,I_FirstName = "Simon", I_LastName = "Hill", I_Email = "simonhil@gmail.com", C_CourseId = 103}
         };
         public IEnumerable<Instructors> GetAllInstructors()
         {
