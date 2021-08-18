@@ -9,5 +9,6 @@ namespace CourseRegistrationApp.Data.Interfaces
     public interface IStudentRepo
     {
         IEnumerable<Student> GetAllStudents();
+        void CreateStudent(Student input);
     }
 }

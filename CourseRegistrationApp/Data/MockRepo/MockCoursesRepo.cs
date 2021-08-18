@@ -20,6 +20,7 @@ namespace CourseRegistrationApp.Data.MockRepo
         public void CreateVendor(Courses input)
         {
             int code = _courses.Max(c => c.C_CourseId) + 1;
+            input.C_CourseId = code;
             _courses.Add(input);
         }
 
