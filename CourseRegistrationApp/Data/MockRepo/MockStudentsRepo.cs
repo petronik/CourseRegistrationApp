@@ -23,6 +23,8 @@ namespace CourseRegistrationApp.Data.MockRepo
 
         public void CreateStudent(Student input)
         {
+            int code = _students.Max(c => c.S_Id) + 1;
+            input.S_Id = code;
             _students.Add(input);
         }
 

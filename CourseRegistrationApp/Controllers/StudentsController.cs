@@ -22,7 +22,15 @@ namespace CourseRegistrationApp.Controllers
         }
         public ActionResult Index()
         {
-            var list = _studentRepo.GetAllStudents().ToList();
+            var courses = _courseRepo.GetAllCourses();
+            var list = _studentRepo.GetAllStudents()
+                .Select(s =>
+                {
+                    s.Course = courses.Where(c => c.C_CourseId == s.C_CourseId)
+                                      .FirstOrDefault();
+                    return s;
+                })
+                .ToList();
             return View(list);
         }
 

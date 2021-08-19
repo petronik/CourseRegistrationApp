@@ -21,10 +21,11 @@ namespace CourseRegistrationApp.Models
         public string S_Email { get; set; }
         [DisplayName("Phone Number")]
         public string S_PhoneNumber { get; set; }
-        [DisplayName("Course ID")]
+        [DisplayName("Course")]
         [ForeignKey("Courses")]
         public int? C_CourseId { get; set; }
-        
+        public Courses Course { get; set; }
+
 
     }
 }

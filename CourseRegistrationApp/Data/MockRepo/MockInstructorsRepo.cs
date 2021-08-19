@@ -11,11 +11,19 @@ namespace CourseRegistrationApp.Data.MockRepo
     {
         private readonly static List<Instructors> _instructors = new List<Instructors>
         {
-            new Instructors{I_Id = 2500,I_FirstName = "John", I_LastName = "Doe", I_Email = "johndoe@gmail.com", C_CourseId = 101},
-            new Instructors{I_Id = 2500,I_FirstName = "Bella", I_LastName = "Mandella", I_Email = "bellamandella@gmail.com", C_CourseId = 104},
-            new Instructors{I_Id = 2500,I_FirstName = "Paul", I_LastName = "Fisher", I_Email = "paulfisher@gmail.com", C_CourseId = 102},
-            new Instructors{I_Id = 2500,I_FirstName = "Simon", I_LastName = "Hill", I_Email = "simonhil@gmail.com", C_CourseId = 103}
+            new Instructors{I_Id = 2501,I_FirstName = "John", I_LastName = "Doe", I_Email = "johndoe@gmail.com", C_CourseId = 101},
+            new Instructors{I_Id = 2502,I_FirstName = "Bella", I_LastName = "Mandella", I_Email = "bellamandella@gmail.com", C_CourseId = 104},
+            new Instructors{I_Id = 2503,I_FirstName = "Paul", I_LastName = "Fisher", I_Email = "paulfisher@gmail.com", C_CourseId = 102},
+            new Instructors{I_Id = 2504,I_FirstName = "Simon", I_LastName = "Hill", I_Email = "simonhil@gmail.com", C_CourseId = 103}
         };
+
+        public void CreateInstructor(Instructors input)
+        {
+            int code = _instructors.Max(c => c.I_Id) + 1;
+            input.I_Id = code;
+            _instructors.Add(input);
+        }
+
         public IEnumerable<Instructors> GetAllInstructors()
         {
             return _instructors;

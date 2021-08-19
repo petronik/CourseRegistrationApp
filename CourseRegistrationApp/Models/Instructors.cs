@@ -16,7 +16,7 @@ namespace CourseRegistrationApp.Models
         public string I_LastName { get; set; }
         [DisplayName("Email")]
         public string I_Email { get; set; }
-        [DisplayName("Course ID")]
+        [DisplayName("Course")]
         public int? C_CourseId { get; set; }
         public Courses Course { get; set; }
     }
