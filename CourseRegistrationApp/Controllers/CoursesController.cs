@@ -26,7 +26,7 @@ namespace CourseRegistrationApp.Controllers
                 {
                     c.Students = students
                                     .Where(s => s.C_CourseId == c.C_CourseId)
-                                    .FirstOrDefault() ?? new Student
+                                    .FirstOrDefault() ?? new Students
                                     {
                                         S_FirstName = "n/a"
                                     };

@@ -43,7 +43,7 @@ namespace CourseRegistrationApp.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Student student)
+        public ActionResult Create(Students student)
         {
             _studentRepo.CreateStudent(student);
             return RedirectToAction(nameof(Index));

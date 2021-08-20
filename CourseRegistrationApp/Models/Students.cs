@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CourseRegistrationApp.Models
 {
-    public class Student
+    public class Students
     {
         [DisplayName("Student Id")]
         [Key]

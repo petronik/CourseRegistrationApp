@@ -20,7 +20,7 @@ namespace CourseRegistrationApp.Models
         [DisplayName("Description")]
         public string C_CourseDescrip { get; set; }
 
-        public Student Students { get; set; }
+        public Students Students { get; set; }
 
     }
 }

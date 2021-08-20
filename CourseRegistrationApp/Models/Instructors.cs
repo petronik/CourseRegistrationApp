@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace CourseRegistrationApp.Models
     public class Instructors
     {
         [DisplayName("Instructor Id")]
+        [Key]
         public int I_Id { get; set; }
         [DisplayName("First Name")]
         public string I_FirstName { get; set; }

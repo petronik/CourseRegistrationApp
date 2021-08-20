@@ -1,5 +1,7 @@
 ﻿using CourseRegistrationApp.Data.Interfaces;
+using CourseRegistrationApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +36,17 @@ namespace CourseRegistrationApp.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Courses = new SelectList(_coursesRepo.GetAllCourses().ToList(),
+                                "C_CourseId", "C_CourseName"
+                                );
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Instructors instructor)
+        {
+            _instructorsRepo.CreateInstructor(instructor);
+            return RedirectToAction(nameof(Index));
         }
     }
 }
