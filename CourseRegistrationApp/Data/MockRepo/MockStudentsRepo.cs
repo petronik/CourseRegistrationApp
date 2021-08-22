@@ -28,9 +28,39 @@ namespace CourseRegistrationApp.Data.MockRepo
             _students.Add(input);
         }
 
+        public void DeleteStudent(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Students> GetAllStudents()
         {
             return _students;
+        }
+
+        public Students GetStudentById(int id)
+        {
+            return _students.FirstOrDefault(s => s.S_Id == id);
+        }
+
+        public bool SaveChanges()
+        {
+            return true;
+        }
+
+        public void UpdateStudent(Students input)
+        {
+            var studentInTheList = _students
+                .FirstOrDefault(s => s.S_Id == input.S_Id);
+
+            if (studentInTheList != null)
+            {
+                studentInTheList.S_FirstName = input.S_FirstName;
+                studentInTheList.S_LastName  = input.S_LastName;
+                studentInTheList.S_Email = input.S_Email;
+                studentInTheList.S_PhoneNumber = input.S_PhoneNumber;
+                studentInTheList.C_CourseId = input.C_CourseId;
+            }
         }
     }
 }

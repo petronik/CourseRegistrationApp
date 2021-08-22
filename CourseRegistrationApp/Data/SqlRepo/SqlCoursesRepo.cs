@@ -47,7 +47,15 @@ namespace CourseRegistrationApp.Data.SqlRepo
 
         public void UpdateCourse(Courses input)
         {
-            throw new NotImplementedException();
+            var courseInTheList = _context.Courses
+                .FirstOrDefault(c => c.C_CourseId == input.C_CourseId);
+
+            if (courseInTheList != null)
+            {
+                courseInTheList.C_CourseNumber = input.C_CourseNumber;
+                courseInTheList.C_CourseName = input.C_CourseName;
+                courseInTheList.C_CourseDescrip = input.C_CourseDescrip;
+            }
         }
     }
 }

@@ -74,6 +74,7 @@ namespace CourseRegistrationApp.Controllers
             try
             {
                 _coursesRepo.UpdateCourse(course);
+                _coursesRepo.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -93,6 +94,7 @@ namespace CourseRegistrationApp.Controllers
             try
             {
                 _coursesRepo.DeleteCourse(id);
+                _coursesRepo.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
             catch

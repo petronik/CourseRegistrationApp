@@ -10,5 +10,9 @@ namespace CourseRegistrationApp.Data.Interfaces
     {
         IEnumerable<Students> GetAllStudents();
         void CreateStudent(Students input);
+        Students GetStudentById(int id);
+        void UpdateStudent(Students input);
+        void DeleteStudent(int id);
+        bool SaveChanges();
     }
 }
