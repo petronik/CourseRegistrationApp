@@ -1,5 +1,6 @@
 ﻿using CourseRegistrationApp.Data.Interfaces;
 using CourseRegistrationApp.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -57,8 +58,47 @@ namespace CourseRegistrationApp.Controllers
         [HttpPost]
         public ActionResult Create(Courses input)
         {
-            _coursesRepo.CreateVendor(input);
+            _coursesRepo.CreateCourse(input);
+            _coursesRepo.SaveChanges();
             return RedirectToAction(nameof(Index));
+        }
+        public ActionResult Edit(int id)
+        {
+            var courseToEdit = _coursesRepo.GetCourseById(id);
+            return View(courseToEdit);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Courses course)
+        {
+            try
+            {
+                _coursesRepo.UpdateCourse(course);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        public ActionResult Delete(int id)
+        {
+            return View(_coursesRepo.GetCourseById(id));
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                _coursesRepo.DeleteCourse(id);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
         }
     }
 }

@@ -33,7 +33,8 @@ namespace CourseRegistrationApp
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
             services.AddScoped<IStudentRepo, MockStudentsRepo>();
-            services.AddScoped<ICoursesRepo, MockCoursesRepo>();
+            //services.AddScoped<ICoursesRepo, MockCoursesRepo>();
+            services.AddScoped<ICoursesRepo, SqlCoursesRepo>();
             services.AddScoped<IInstructorsRepo, MockInstructorsRepo>();
         }
 

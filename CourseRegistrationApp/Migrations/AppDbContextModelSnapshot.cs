@@ -33,12 +33,7 @@ namespace CourseRegistrationApp.Migrations
                     b.Property<int>("C_CourseNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("StudentsS_Id")
-                        .HasColumnType("int");
-
                     b.HasKey("C_CourseId");
-
-                    b.HasIndex("StudentsS_Id");
 
                     b.ToTable("Courses");
 
@@ -73,7 +68,69 @@ namespace CourseRegistrationApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CourseRegistrationApp.Models.Student", b =>
+            modelBuilder.Entity("CourseRegistrationApp.Models.Instructors", b =>
+                {
+                    b.Property<int>("I_Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int?>("C_CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CourseC_CourseId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("I_Email")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("I_FirstName")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("I_LastName")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("I_Id");
+
+                    b.HasIndex("CourseC_CourseId");
+
+                    b.ToTable("Instructors");
+
+                    b.HasData(
+                        new
+                        {
+                            I_Id = 2501,
+                            C_CourseId = 101,
+                            I_Email = "johndoe@gmail.com",
+                            I_FirstName = "John",
+                            I_LastName = "Doe"
+                        },
+                        new
+                        {
+                            I_Id = 2502,
+                            C_CourseId = 104,
+                            I_Email = "bellamandella@gmail.com",
+                            I_FirstName = "Bella",
+                            I_LastName = "Mandella"
+                        },
+                        new
+                        {
+                            I_Id = 2503,
+                            C_CourseId = 102,
+                            I_Email = "paulfisher@gmail.com",
+                            I_FirstName = "Paul",
+                            I_LastName = "Fisher"
+                        },
+                        new
+                        {
+                            I_Id = 2504,
+                            C_CourseId = 103,
+                            I_Email = "simonhil@gmail.com",
+                            I_FirstName = "Simon",
+                            I_LastName = "Hill"
+                        });
+                });
+
+            modelBuilder.Entity("CourseRegistrationApp.Models.Students", b =>
                 {
                     b.Property<int>("S_Id")
                         .ValueGeneratedOnAdd()
@@ -95,6 +152,9 @@ namespace CourseRegistrationApp.Migrations
                         .HasColumnType("longtext");
 
                     b.HasKey("S_Id");
+
+                    b.HasIndex("C_CourseId")
+                        .IsUnique();
 
                     b.ToTable("Students");
 
@@ -173,12 +233,26 @@ namespace CourseRegistrationApp.Migrations
                         });
                 });
 
+            modelBuilder.Entity("CourseRegistrationApp.Models.Instructors", b =>
+                {
+                    b.HasOne("CourseRegistrationApp.Models.Courses", "Course")
+                        .WithMany()
+                        .HasForeignKey("CourseC_CourseId");
+
+                    b.Navigation("Course");
+                });
+
+            modelBuilder.Entity("CourseRegistrationApp.Models.Students", b =>
+                {
+                    b.HasOne("CourseRegistrationApp.Models.Courses", "Course")
+                        .WithOne("Students")
+                        .HasForeignKey("CourseRegistrationApp.Models.Students", "C_CourseId");
+
+                    b.Navigation("Course");
+                });
+
             modelBuilder.Entity("CourseRegistrationApp.Models.Courses", b =>
                 {
-                    b.HasOne("CourseRegistrationApp.Models.Student", "Students")
-                        .WithMany()
-                        .HasForeignKey("StudentsS_Id");
-
                     b.Navigation("Students");
                 });
 #pragma warning restore 612, 618

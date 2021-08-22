@@ -17,16 +17,48 @@ namespace CourseRegistrationApp.Data.MockRepo
             new Courses { C_CourseId = 104, C_CourseNumber = 2430, C_CourseName = "Mathematics", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
         };
 
-        public void CreateVendor(Courses input)
+        
+
+        public void CreateCourse(Courses input)
         {
             int code = _courses.Max(c => c.C_CourseId) + 1;
             input.C_CourseId = code;
             _courses.Add(input);
         }
 
+        public void DeleteCourse(int id)
+        {
+            var courseToDelete = _courses.FirstOrDefault(c => c.C_CourseId == id);
+            if (courseToDelete != null)
+                _courses.Remove(courseToDelete);
+        }
+
         public IEnumerable<Courses> GetAllCourses()
         {
             return _courses;
+        }
+
+        public Courses GetCourseById(int id)
+        {
+            return _courses.FirstOrDefault(c => c.C_CourseId == id);
+        }
+
+        public bool SaveChanges()
+        {
+            return true;
+        }
+
+        public void UpdateCourse(Courses input)
+        {
+            var courseInTheList = _courses
+                .FirstOrDefault(c => c.C_CourseId == input.C_CourseId);
+
+            if (courseInTheList != null)
+            {
+                courseInTheList.C_CourseNumber = input.C_CourseNumber;
+                courseInTheList.C_CourseName = input.C_CourseName;
+                courseInTheList.C_CourseDescrip = input.C_CourseDescrip;
+            }
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,6 +20,7 @@ namespace CourseRegistrationApp.Models
         [DisplayName("Email")]
         public string I_Email { get; set; }
         [DisplayName("Course")]
+        [ForeignKey("Courses")]
         public int? C_CourseId { get; set; }
         public Courses Course { get; set; }
     }

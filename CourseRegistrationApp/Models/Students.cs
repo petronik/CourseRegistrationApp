@@ -22,7 +22,7 @@ namespace CourseRegistrationApp.Models
         [DisplayName("Phone Number")]
         public string S_PhoneNumber { get; set; }
         [DisplayName("Course")]
-        [ForeignKey("Courses")]
+        [ForeignKey("Course")]
         public int? C_CourseId { get; set; }
         public Courses Course { get; set; }
 

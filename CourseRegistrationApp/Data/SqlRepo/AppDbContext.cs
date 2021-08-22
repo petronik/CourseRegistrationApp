@@ -14,6 +14,7 @@ namespace CourseRegistrationApp.Data.SqlRepo
 
         public DbSet<Courses> Courses { get; set; }
         public DbSet<Students> Students { get; set; }
+        public DbSet<Instructors> Instructors { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -34,6 +35,13 @@ namespace CourseRegistrationApp.Data.SqlRepo
                     new Students { S_Id = 3106, S_FirstName = "Roger", S_LastName = "Starr", S_Email = "rogerStarr@gmail.com", S_PhoneNumber = "987-233-7755", C_CourseId = 103 },
                     new Students { S_Id = 3107, S_FirstName = "Bob", S_LastName = "McCartney", S_Email = "bobmccartney@gmail.com", S_PhoneNumber = "321-654-4532", C_CourseId = 103 },
                     new Students { S_Id = 3108, S_FirstName = "Briant", S_LastName = "Harrison", S_Email = "briantharrison@gmail.com", S_PhoneNumber = "233-342-7754", C_CourseId = 103 }
+
+                );
+            modelBuilder.Entity<Instructors>().HasData(
+                    new Instructors { I_Id = 2501, I_FirstName = "John", I_LastName = "Doe", I_Email = "johndoe@gmail.com", C_CourseId = 101 },
+                    new Instructors { I_Id = 2502, I_FirstName = "Bella", I_LastName = "Mandella", I_Email = "bellamandella@gmail.com", C_CourseId = 104 },
+                    new Instructors { I_Id = 2503, I_FirstName = "Paul", I_LastName = "Fisher", I_Email = "paulfisher@gmail.com", C_CourseId = 102 },
+                    new Instructors { I_Id = 2504, I_FirstName = "Simon", I_LastName = "Hill", I_Email = "simonhil@gmail.com", C_CourseId = 103 }
 
                 );
         }
