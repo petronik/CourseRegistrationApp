@@ -25,7 +25,9 @@ namespace CourseRegistrationApp.Data.SqlRepo
 
         public void DeleteCourse(int id)
         {
-            throw new NotImplementedException();
+            var courseToDelete = GetCourseById(id);
+            if(courseToDelete != null)
+            _context.Courses.Remove(courseToDelete);
         }
 
         public IEnumerable<Courses> GetAllCourses()
@@ -35,7 +37,7 @@ namespace CourseRegistrationApp.Data.SqlRepo
 
         public Courses GetCourseById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Courses.FirstOrDefault(c => c.C_CourseId == id);
         }
 
         public bool SaveChanges()
