@@ -32,11 +32,9 @@ namespace CourseRegistrationApp
                 var connectionString = Configuration.GetConnectionString("Default");
                 options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
             });
-            //services.AddScoped<IStudentRepo, MockStudentsRepo>();
             services.AddScoped<IStudentRepo, SqlStudentsRepo>();
-            //services.AddScoped<ICoursesRepo, MockCoursesRepo>();
             services.AddScoped<ICoursesRepo, SqlCoursesRepo>();
-            services.AddScoped<IInstructorsRepo, MockInstructorsRepo>();
+            services.AddScoped<IInstructorsRepo, SqlInstructorsRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

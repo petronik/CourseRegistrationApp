@@ -19,8 +19,5 @@ namespace CourseRegistrationApp.Models
         public string C_CourseName { get; set; }
         [DisplayName("Description")]
         public string C_CourseDescrip { get; set; }
-
-        //public Students Students { get; set; }
-
     }
 }

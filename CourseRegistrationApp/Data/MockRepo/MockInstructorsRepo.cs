@@ -24,9 +24,29 @@ namespace CourseRegistrationApp.Data.MockRepo
             _instructors.Add(input);
         }
 
+        public void DeleteInstructor(int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Instructor> GetAllInstructors()
         {
             return _instructors;
+        }
+
+        public Instructor GetInstructorById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool SaveChanges()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateInstructor(Instructor input)
+        {
+            throw new NotImplementedException();
         }
     }
 }

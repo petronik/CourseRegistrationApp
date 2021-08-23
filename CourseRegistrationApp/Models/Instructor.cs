@@ -20,7 +20,7 @@ namespace CourseRegistrationApp.Models
         [DisplayName("Email")]
         public string I_Email { get; set; }
         [DisplayName("Course")]
-        [ForeignKey("Courses")]
+        [ForeignKey("Course")]
         public int? C_CourseId { get; set; }
         public Course Course { get; set; }
     }

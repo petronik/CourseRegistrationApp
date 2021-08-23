@@ -77,9 +77,6 @@ namespace CourseRegistrationApp.Migrations
                     b.Property<int?>("C_CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CourseC_CourseId")
-                        .HasColumnType("int");
-
                     b.Property<string>("I_Email")
                         .HasColumnType("longtext");
 
@@ -91,7 +88,7 @@ namespace CourseRegistrationApp.Migrations
 
                     b.HasKey("I_Id");
 
-                    b.HasIndex("CourseC_CourseId");
+                    b.HasIndex("C_CourseId");
 
                     b.ToTable("Instructors");
 
@@ -236,7 +233,7 @@ namespace CourseRegistrationApp.Migrations
                 {
                     b.HasOne("CourseRegistrationApp.Models.Course", "Course")
                         .WithMany()
-                        .HasForeignKey("CourseC_CourseId");
+                        .HasForeignKey("C_CourseId");
 
                     b.Navigation("Course");
                 });

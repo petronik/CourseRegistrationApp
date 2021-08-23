@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseRegistrationApp.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210822043322_Initial2")]
-    partial class Initial2
+    [Migration("20210823004022_init3")]
+    partial class init3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,7 @@ namespace CourseRegistrationApp.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.9");
 
-            modelBuilder.Entity("CourseRegistrationApp.Models.Courses", b =>
+            modelBuilder.Entity("CourseRegistrationApp.Models.Course", b =>
                 {
                     b.Property<int>("C_CourseId")
                         .ValueGeneratedOnAdd()
@@ -70,16 +70,13 @@ namespace CourseRegistrationApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CourseRegistrationApp.Models.Instructors", b =>
+            modelBuilder.Entity("CourseRegistrationApp.Models.Instructor", b =>
                 {
                     b.Property<int>("I_Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     b.Property<int?>("C_CourseId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("CourseC_CourseId")
                         .HasColumnType("int");
 
                     b.Property<string>("I_Email")
@@ -93,7 +90,7 @@ namespace CourseRegistrationApp.Migrations
 
                     b.HasKey("I_Id");
 
-                    b.HasIndex("CourseC_CourseId");
+                    b.HasIndex("C_CourseId");
 
                     b.ToTable("Instructors");
 
@@ -132,7 +129,7 @@ namespace CourseRegistrationApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CourseRegistrationApp.Models.Students", b =>
+            modelBuilder.Entity("CourseRegistrationApp.Models.Student", b =>
                 {
                     b.Property<int>("S_Id")
                         .ValueGeneratedOnAdd()
@@ -155,8 +152,7 @@ namespace CourseRegistrationApp.Migrations
 
                     b.HasKey("S_Id");
 
-                    b.HasIndex("C_CourseId")
-                        .IsUnique();
+                    b.HasIndex("C_CourseId");
 
                     b.ToTable("Students");
 
@@ -235,27 +231,22 @@ namespace CourseRegistrationApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("CourseRegistrationApp.Models.Instructors", b =>
+            modelBuilder.Entity("CourseRegistrationApp.Models.Instructor", b =>
                 {
-                    b.HasOne("CourseRegistrationApp.Models.Courses", "Course")
+                    b.HasOne("CourseRegistrationApp.Models.Course", "Course")
                         .WithMany()
-                        .HasForeignKey("CourseC_CourseId");
+                        .HasForeignKey("C_CourseId");
 
                     b.Navigation("Course");
                 });
 
-            modelBuilder.Entity("CourseRegistrationApp.Models.Students", b =>
+            modelBuilder.Entity("CourseRegistrationApp.Models.Student", b =>
                 {
-                    b.HasOne("CourseRegistrationApp.Models.Courses", "Course")
-                        .WithOne("Students")
-                        .HasForeignKey("CourseRegistrationApp.Models.Students", "C_CourseId");
+                    b.HasOne("CourseRegistrationApp.Models.Course", "Course")
+                        .WithMany()
+                        .HasForeignKey("C_CourseId");
 
                     b.Navigation("Course");
-                });
-
-            modelBuilder.Entity("CourseRegistrationApp.Models.Courses", b =>
-                {
-                    b.Navigation("Students");
                 });
 #pragma warning restore 612, 618
         }
