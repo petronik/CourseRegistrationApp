@@ -1,4 +1,5 @@
 ﻿using CourseRegistrationApp.Models;
+using CourseRegistrationApp.ModelsDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CourseRegistrationApp.Models.Student>
+﻿@model IEnumerable<CourseRegistrationApp.ModelsDto.StudentDto>
 
 @{
     ViewData["Title"] = "Index";
@@ -24,9 +24,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.S_Email)
             </th>
-            <th>
+            @*<th>
                 @Html.DisplayNameFor(model => model.S_PhoneNumber)
-            </th>
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.C_CourseId)
             </th>

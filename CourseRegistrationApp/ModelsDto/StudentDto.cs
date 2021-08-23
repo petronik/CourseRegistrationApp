@@ -1,23 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CourseRegistrationApp.Models
+namespace CourseRegistrationApp.ModelsDto
 {
-    public class Student
+    public class StudentDto
     {
-        [Key]
+        [DisplayName("Student Id")]
         public int S_Id { get; set; }
+        [DisplayName("First Name")]
         public string S_FirstName { get; set; }
+        [DisplayName("Last Name")]
         public string S_LastName { get; set; }
+        [DisplayName("Email")]
         public string S_Email { get; set; }
+        [DisplayName("Phone Number")]
         public string S_PhoneNumber { get; set; }
-        [ForeignKey("Course")]
+        [DisplayName("Course")]
         public int? C_CourseId { get; set; }
-        public Course Course { get; set; }
+        public CourseDto Course { get; set; }
     }
 }

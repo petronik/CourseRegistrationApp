@@ -1,5 +1,7 @@
-﻿using CourseRegistrationApp.Data.Interfaces;
+﻿using CourseRegistrationApp.Data;
+using CourseRegistrationApp.Data.Interfaces;
 using CourseRegistrationApp.Models;
+using CourseRegistrationApp.ModelsDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,6 +16,7 @@ namespace CourseRegistrationApp.Controllers
     {
         private readonly IStudentRepo _studentRepo;
         private readonly ICoursesRepo _courseRepo;
+        private readonly Mapper _mapper = new Mapper();
 
         public StudentsController(IStudentRepo studRepo, ICoursesRepo coursesRepo)
         {
@@ -24,7 +27,7 @@ namespace CourseRegistrationApp.Controllers
         {
             var courses = _courseRepo.GetAllCourses();
             var list = _studentRepo.GetAllStudents()
-                .Select(s =>
+                .Select(s => 
                 {
                     s.Course = courses.Where(c => c.C_CourseId == s.C_CourseId)
                                       .FirstOrDefault() ?? new Course
@@ -33,38 +36,43 @@ namespace CourseRegistrationApp.Controllers
                                       };
                     return s;
                 })
+                .Select(s => _mapper.Map(s))
                 .ToList();
             return View(list);
         }
 
         public ActionResult Create()
         {
-            var list = _courseRepo.GetAllCourses().ToList();
+            var list = _courseRepo.GetAllCourses()
+                .Select(s => _mapper.Map(s))
+                .ToList();
             ViewBag.Courses = new SelectList(list, "C_CourseId", "C_CourseName");
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Student student)
+        public ActionResult Create(StudentDto student)
         {
-            _studentRepo.CreateStudent(student);
+            _studentRepo.CreateStudent(_mapper.Map(student));
             _studentRepo.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
         public ActionResult Edit(int id)
         {
-            var list2 = _courseRepo.GetAllCourses().ToList();
+            var list2 = _courseRepo.GetAllCourses()
+                .Select(c => _mapper.Map(c))
+                .ToList();
             ViewBag.Courses = new SelectList(list2, "C_CourseId", "C_CourseName");
             
-            var studentToEdit = _studentRepo.GetStudentById(id);
+            var studentToEdit = _mapper.Map(_studentRepo.GetStudentById(id));
             return View(studentToEdit);
         }
         [HttpPost]
-        public ActionResult Edit(Student student)
+        public ActionResult Edit(StudentDto student)
         {
             try
             {
-                _studentRepo.UpdateStudent(student);
+                _studentRepo.UpdateStudent(_mapper.Map(student));
                 _studentRepo.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
@@ -76,7 +84,7 @@ namespace CourseRegistrationApp.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View(_studentRepo.GetStudentById(id));
+            return View(_mapper.Map(_studentRepo.GetStudentById(id)));
         }
 
         [HttpPost]

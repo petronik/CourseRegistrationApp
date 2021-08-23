@@ -1,5 +1,7 @@
-﻿using CourseRegistrationApp.Data.Interfaces;
+﻿using CourseRegistrationApp.Data;
+using CourseRegistrationApp.Data.Interfaces;
 using CourseRegistrationApp.Models;
+using CourseRegistrationApp.ModelsDto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +15,7 @@ namespace CourseRegistrationApp.Controllers
     {
         private readonly ICoursesRepo _coursesRepo;
         private readonly IStudentRepo _studentRepo;
+        private readonly Mapper _mapper = new Mapper();
 
         public CoursesController(ICoursesRepo coursesRepo, IStudentRepo studentsRepo)
         {
@@ -21,20 +24,9 @@ namespace CourseRegistrationApp.Controllers
         }
         public IActionResult Index()
         {
-            var students = _studentRepo.GetAllStudents();
             var list = _coursesRepo.GetAllCourses()
-                //.Select(c =>
-                //{
-                //    c.Student = students
-                //                    .Where(s => s.C_CourseId == c.C_CourseId)
-                //                    .FirstOrDefault() ?? new Student
-                //                    {
-                //                        S_FirstName = "n/a"
-                //                    };
-                //    return c;
-                //})
-
-                .ToList();
+                        .Select(c => _mapper.Map(c))
+                        .ToList();
             return View(list);
         }
         public IEnumerable<string> GetStudentsByCourseId(int? id)
@@ -56,24 +48,24 @@ namespace CourseRegistrationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Course input)
+        public ActionResult Create(CourseDto input)
         {
-            _coursesRepo.CreateCourse(input);
+            _coursesRepo.CreateCourse(_mapper.Map(input));
             _coursesRepo.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
         public ActionResult Edit(int id)
         {
-            var courseToEdit = _coursesRepo.GetCourseById(id);
+            var courseToEdit = _mapper.Map(_coursesRepo.GetCourseById(id));
             return View(courseToEdit);
         }
 
         [HttpPost]
-        public ActionResult Edit(Course course)
+        public ActionResult Edit(CourseDto course)
         {
             try
             {
-                _coursesRepo.UpdateCourse(course);
+                _coursesRepo.UpdateCourse(_mapper.Map(course));
                 _coursesRepo.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }
@@ -85,7 +77,7 @@ namespace CourseRegistrationApp.Controllers
 
         public ActionResult Delete(int id)
         {
-            return View(_coursesRepo.GetCourseById(id));
+            return View(_mapper.Map(_coursesRepo.GetCourseById(id)));
         }
 
         [HttpPost]
