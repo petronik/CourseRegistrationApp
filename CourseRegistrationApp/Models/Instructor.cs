@@ -8,24 +8,20 @@ using System.Threading.Tasks;
 
 namespace CourseRegistrationApp.Models
 {
-    public class Students
+    public class Instructor
     {
-        [DisplayName("Student Id")]
+        [DisplayName("Instructor Id")]
         [Key]
-        public int S_Id { get; set; }
+        public int I_Id { get; set; }
         [DisplayName("First Name")]
-        public string S_FirstName { get; set; }
+        public string I_FirstName { get; set; }
         [DisplayName("Last Name")]
-        public string S_LastName { get; set; }
+        public string I_LastName { get; set; }
         [DisplayName("Email")]
-        public string S_Email { get; set; }
-        [DisplayName("Phone Number")]
-        public string S_PhoneNumber { get; set; }
+        public string I_Email { get; set; }
         [DisplayName("Course")]
-        [ForeignKey("Course")]
+        [ForeignKey("Courses")]
         public int? C_CourseId { get; set; }
-        public Courses Course { get; set; }
-
-
+        public Course Course { get; set; }
     }
 }

@@ -9,17 +9,17 @@ namespace CourseRegistrationApp.Data.MockRepo
 {
     public class MockCoursesRepo : ICoursesRepo
     {
-        private readonly static List<Courses> _courses = new List<Courses>
+        private readonly static List<Course> _courses = new List<Course>
         {
-            new Courses { C_CourseId = 101, C_CourseNumber = 2400, C_CourseName = "Homeopathy", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
-            new Courses { C_CourseId = 102, C_CourseNumber = 2410, C_CourseName = "Astrology", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
-            new Courses { C_CourseId = 103, C_CourseNumber = 2420, C_CourseName = "Programming", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
-            new Courses { C_CourseId = 104, C_CourseNumber = 2430, C_CourseName = "Mathematics", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
+            new Course { C_CourseId = 101, C_CourseNumber = 2400, C_CourseName = "Homeopathy", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
+            new Course { C_CourseId = 102, C_CourseNumber = 2410, C_CourseName = "Astrology", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
+            new Course { C_CourseId = 103, C_CourseNumber = 2420, C_CourseName = "Programming", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."},
+            new Course { C_CourseId = 104, C_CourseNumber = 2430, C_CourseName = "Mathematics", C_CourseDescrip = "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
         };
 
         
 
-        public void CreateCourse(Courses input)
+        public void CreateCourse(Course input)
         {
             int code = _courses.Max(c => c.C_CourseId) + 1;
             input.C_CourseId = code;
@@ -33,12 +33,12 @@ namespace CourseRegistrationApp.Data.MockRepo
                 _courses.Remove(courseToDelete);
         }
 
-        public IEnumerable<Courses> GetAllCourses()
+        public IEnumerable<Course> GetAllCourses()
         {
             return _courses;
         }
 
-        public Courses GetCourseById(int id)
+        public Course GetCourseById(int id)
         {
             return _courses.FirstOrDefault(c => c.C_CourseId == id);
         }
@@ -48,7 +48,7 @@ namespace CourseRegistrationApp.Data.MockRepo
             return true;
         }
 
-        public void UpdateCourse(Courses input)
+        public void UpdateCourse(Course input)
         {
             var courseInTheList = _courses
                 .FirstOrDefault(c => c.C_CourseId == input.C_CourseId);

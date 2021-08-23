@@ -43,7 +43,7 @@ namespace CourseRegistrationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Instructors instructor)
+        public ActionResult Create(Instructor instructor)
         {
             _instructorsRepo.CreateInstructor(instructor);
             return RedirectToAction(nameof(Index));

@@ -8,7 +8,7 @@ namespace CourseRegistrationApp.Data.Interfaces
 {
     public interface IInstructorsRepo
     {
-        IEnumerable<Instructors> GetAllInstructors();
-        void CreateInstructor(Instructors input);  
+        IEnumerable<Instructor> GetAllInstructors();
+        void CreateInstructor(Instructor input);  
     }
 }

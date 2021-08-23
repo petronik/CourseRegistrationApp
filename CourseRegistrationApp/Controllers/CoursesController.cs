@@ -23,16 +23,16 @@ namespace CourseRegistrationApp.Controllers
         {
             var students = _studentRepo.GetAllStudents();
             var list = _coursesRepo.GetAllCourses()
-                .Select(c =>
-                {
-                    c.Students = students
-                                    .Where(s => s.C_CourseId == c.C_CourseId)
-                                    .FirstOrDefault() ?? new Students
-                                    {
-                                        S_FirstName = "n/a"
-                                    };
-                    return c;
-                })
+                //.Select(c =>
+                //{
+                //    c.Student = students
+                //                    .Where(s => s.C_CourseId == c.C_CourseId)
+                //                    .FirstOrDefault() ?? new Student
+                //                    {
+                //                        S_FirstName = "n/a"
+                //                    };
+                //    return c;
+                //})
 
                 .ToList();
             return View(list);
@@ -56,7 +56,7 @@ namespace CourseRegistrationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(Courses input)
+        public ActionResult Create(Course input)
         {
             _coursesRepo.CreateCourse(input);
             _coursesRepo.SaveChanges();
@@ -69,7 +69,7 @@ namespace CourseRegistrationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Courses course)
+        public ActionResult Edit(Course course)
         {
             try
             {

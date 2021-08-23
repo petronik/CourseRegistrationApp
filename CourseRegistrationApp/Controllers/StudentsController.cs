@@ -27,7 +27,7 @@ namespace CourseRegistrationApp.Controllers
                 .Select(s =>
                 {
                     s.Course = courses.Where(c => c.C_CourseId == s.C_CourseId)
-                                      .FirstOrDefault() ?? new Courses
+                                      .FirstOrDefault() ?? new Course
                                       {
                                           C_CourseName = "N/A"
                                       };
@@ -44,7 +44,7 @@ namespace CourseRegistrationApp.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Create(Students student)
+        public ActionResult Create(Student student)
         {
             _studentRepo.CreateStudent(student);
             _studentRepo.SaveChanges();
@@ -60,7 +60,7 @@ namespace CourseRegistrationApp.Controllers
             return View(studentToEdit);
         }
         [HttpPost]
-        public ActionResult Edit(Students student)
+        public ActionResult Edit(Student student)
         {
             try
             {

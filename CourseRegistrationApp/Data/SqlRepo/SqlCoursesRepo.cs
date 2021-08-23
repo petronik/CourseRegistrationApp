@@ -15,7 +15,7 @@ namespace CourseRegistrationApp.Data.SqlRepo
         {
             _context = context;
         }
-        public void CreateCourse(Courses input)
+        public void CreateCourse(Course input)
         {
             if(input == null)
             throw new ArgumentException(nameof(input));
@@ -30,12 +30,12 @@ namespace CourseRegistrationApp.Data.SqlRepo
             _context.Courses.Remove(courseToDelete);
         }
 
-        public IEnumerable<Courses> GetAllCourses()
+        public IEnumerable<Course> GetAllCourses()
         {
             return _context.Courses.ToList();
         }
 
-        public Courses GetCourseById(int id)
+        public Course GetCourseById(int id)
         {
             return _context.Courses.FirstOrDefault(c => c.C_CourseId == id);
         }
@@ -45,7 +45,7 @@ namespace CourseRegistrationApp.Data.SqlRepo
             return _context.SaveChanges() >= 0;
         }
 
-        public void UpdateCourse(Courses input)
+        public void UpdateCourse(Course input)
         {
             var courseInTheList = _context.Courses
                 .FirstOrDefault(c => c.C_CourseId == input.C_CourseId);

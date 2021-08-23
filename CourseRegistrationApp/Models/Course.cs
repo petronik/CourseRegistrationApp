@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CourseRegistrationApp.Models
 {
-    public class Courses
+    public class Course
     {
         [DisplayName("Course Id")]
         [Key]
@@ -20,7 +20,7 @@ namespace CourseRegistrationApp.Models
         [DisplayName("Description")]
         public string C_CourseDescrip { get; set; }
 
-        public Students Students { get; set; }
+        //public Students Students { get; set; }
 
     }
 }
