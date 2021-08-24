@@ -35,6 +35,7 @@ namespace CourseRegistrationApp
             services.AddScoped<IStudentRepo, SqlStudentsRepo>();
             services.AddScoped<ICoursesRepo, SqlCoursesRepo>();
             services.AddScoped<IInstructorsRepo, SqlInstructorsRepo>();
+            services.AddScoped<IStudentCoursesRepo, SqlStudentCoursesRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

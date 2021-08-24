@@ -15,6 +15,7 @@ namespace CourseRegistrationApp.Data.SqlRepo
         public DbSet<Course> Courses { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Instructor> Instructors { get; set; }
+        public DbSet<StudentCourse> StudentCourses { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -44,6 +45,7 @@ namespace CourseRegistrationApp.Data.SqlRepo
                     new Instructor { I_Id = 2504, I_FirstName = "Simon", I_LastName = "Hill", I_Email = "simonhil@gmail.com", C_CourseId = 103 }
 
                 );
+            
         }
 
     }

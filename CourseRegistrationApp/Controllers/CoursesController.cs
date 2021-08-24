@@ -15,12 +15,14 @@ namespace CourseRegistrationApp.Controllers
     {
         private readonly ICoursesRepo _coursesRepo;
         private readonly IStudentRepo _studentRepo;
+        private readonly IStudentCoursesRepo _studentCoursesRepo;
         private readonly Mapper _mapper = new Mapper();
 
-        public CoursesController(ICoursesRepo coursesRepo, IStudentRepo studentsRepo)
+        public CoursesController(ICoursesRepo coursesRepo, IStudentRepo studentsRepo, IStudentCoursesRepo studentCoursesRepo)
         {
             _coursesRepo = coursesRepo;
             _studentRepo = studentsRepo;
+            _studentCoursesRepo = studentCoursesRepo;
         }
         public IActionResult Index()
         {
