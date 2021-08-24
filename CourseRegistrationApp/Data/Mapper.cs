@@ -77,7 +77,8 @@ namespace CourseRegistrationApp.Data
                 I_FirstName = input.I_FirstName,
                 I_LastName = input.I_LastName,
                 I_Email = input.I_Email,
-                C_CourseId = input.C_CourseId
+                C_CourseId = input.C_CourseId,
+                Course = Map(input.Course)
             };
         }
     }
