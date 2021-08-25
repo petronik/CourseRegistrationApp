@@ -18,8 +18,6 @@ namespace CourseRegistrationApp.ModelsDto
         public string S_Email { get; set; }
         [DisplayName("Phone Number")]
         public string S_PhoneNumber { get; set; }
-        [DisplayName("Course")]
-        public int? C_CourseId { get; set; }
-        public CourseDto Course { get; set; }
+
     }
 }

@@ -40,7 +40,6 @@ namespace CourseRegistrationApp.Data
                 S_LastName = input.S_LastName,
                 S_Email = input.S_Email,
                 S_PhoneNumber = input.S_PhoneNumber,
-                C_CourseId = input.C_CourseId
             };
         }
 
@@ -53,8 +52,6 @@ namespace CourseRegistrationApp.Data
                 S_LastName = input.S_LastName,
                 S_Email = input.S_Email,
                 S_PhoneNumber = input.S_PhoneNumber,
-                C_CourseId = input.C_CourseId,
-                Course = Map(input.Course )
             };
         }
 
@@ -66,7 +63,8 @@ namespace CourseRegistrationApp.Data
                 I_FirstName = input.I_FirstName,
                 I_LastName = input.I_LastName,
                 I_Email = input.I_Email,
-                C_CourseId = input.C_CourseId
+                C_CourseId = input.C_CourseId,
+                Course = Map(input.Course)
             };
         }
         public InstructorDto Map(Instructor input)

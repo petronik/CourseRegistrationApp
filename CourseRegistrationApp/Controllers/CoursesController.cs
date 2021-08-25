@@ -2,6 +2,7 @@
 using CourseRegistrationApp.Data.Interfaces;
 using CourseRegistrationApp.Models;
 using CourseRegistrationApp.ModelsDto;
+using CourseRegistrationApp.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -24,24 +25,49 @@ namespace CourseRegistrationApp.Controllers
             _studentRepo = studentsRepo;
             _studentCoursesRepo = studentCoursesRepo;
         }
-        public IActionResult Index()
+        public ActionResult Index()
         {
             var list = _coursesRepo.GetAllCourses()
                         .Select(c => _mapper.Map(c))
                         .ToList();
             return View(list);
         }
-        public IEnumerable<string> GetStudentsByCourseId(int? id)
-        {
-            var res = _studentRepo.GetAllStudents()
-                                   .Where(s => s.C_CourseId == id)
-                                   .Select(s => s.S_FirstName + " " + s.S_LastName + "<br>");
-            if(res == null || res.Count() == 0)
-            {
-                return new List<string> { "No Students On This Course." };
-            }
+        //public IEnumerable<string> GetStudentsByCourseId(int? id)
+        //{
+        //    var res = _studentRepo.GetAllStudents()
+        //                           .Select(s => s.S_FirstName + " " + s.S_LastName + "<br>");
+        //    if(res == null || res.Count() == 0)
+        //    {
+        //        return new List<string> { "No Students On This Course." };
+        //    }
 
-            return res;
+        //    return res;
+        //}
+
+        public ActionResult GetStudentsByCourseId(int id)
+        {
+            var courseStudent = _studentCoursesRepo.GetAllStudentCourses();
+            var students = _studentRepo.GetAllStudents()
+                .Select(s =>
+                    new StudentVM
+                    {
+                        Id = s.S_Id,
+                        FirstName = s.S_FirstName,
+                        LastName = s.S_LastName,
+                        IsActive = courseStudent
+                        .Where(cs => cs.StudentId == s.S_Id &&
+                            cs.CourseId == id)
+                        .FirstOrDefault() == null ? false : true
+                    }
+                )
+                .ToList();
+            SaveStudentsInCourseVM pvm = new SaveStudentsInCourseVM
+            {
+                Student = students,
+                CourseId = id
+            };
+            
+            return PartialView(pvm);
         }
 
         public ActionResult Create()

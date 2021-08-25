@@ -16,8 +16,5 @@ namespace CourseRegistrationApp.Models
         public string S_LastName { get; set; }
         public string S_Email { get; set; }
         public string S_PhoneNumber { get; set; }
-        [ForeignKey("Course")]
-        public int? C_CourseId { get; set; }
-        public Course Course { get; set; }
     }
 }

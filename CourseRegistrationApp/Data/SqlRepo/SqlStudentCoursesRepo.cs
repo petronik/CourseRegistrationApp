@@ -15,6 +15,9 @@ namespace CourseRegistrationApp.Data.SqlRepo
         {
             _context = context;
         }
+
+        
+
         public void CreateStudentCourse(StudentCourse input)
         {
             throw new NotImplementedException();
@@ -33,6 +36,18 @@ namespace CourseRegistrationApp.Data.SqlRepo
         public StudentCourse GetStudentCourseById(int id)
         {
             return _context.StudentCourses.FirstOrDefault(sc => sc.Id == id);
+        }
+
+        public void AddRange(IEnumerable<StudentCourse> range)
+        {
+            _context.AddRange(range);
+        }
+
+        public void RemoveRange(int courseId)
+        {
+            var rangeToRemove = _context.StudentCourses
+                .Where(sc => sc.StudentId == courseId);
+            _context.RemoveRange(rangeToRemove);
         }
 
         public bool SaveChanges()

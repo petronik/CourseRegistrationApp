@@ -57,7 +57,6 @@ namespace CourseRegistrationApp.Data.SqlRepo
                 studentInTheList.S_LastName = input.S_LastName;
                 studentInTheList.S_Email = input.S_Email;
                 studentInTheList.S_PhoneNumber = input.S_PhoneNumber;
-                studentInTheList.C_CourseId = input.C_CourseId;
 
             }
         }

@@ -89,11 +89,11 @@ namespace CourseRegistrationApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Instructor input)
         {
             try
             {
-                _instructorsRepo.DeleteInstructor(id);
+                _instructorsRepo.DeleteInstructor(input.I_Id);
                 _instructorsRepo.SaveChanges();
                 return RedirectToAction(nameof(Index));
             }

@@ -14,5 +14,7 @@ namespace CourseRegistrationApp.Data.Interfaces
         void UpdateStudentCourse(StudentCourse input);
         void DeleteStudentCourse(int id);
         bool SaveChanges();
+        void RemoveRange(int courseId);
+        void AddRange(IEnumerable<StudentCourse> range);
     }
 }

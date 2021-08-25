@@ -36,17 +36,24 @@ namespace CourseRegistrationApp.Data.MockRepo
 
         public Instructor GetInstructorById(int id)
         {
-            throw new NotImplementedException();
+            return _instructors.FirstOrDefault(i => i.I_Id == id);
         }
 
         public bool SaveChanges()
         {
-            throw new NotImplementedException();
+            return true;
         }
 
         public void UpdateInstructor(Instructor input)
         {
-            throw new NotImplementedException();
+            var instructorInTheList = _instructors.FirstOrDefault(i => i.I_Id == input.I_Id);
+            if(instructorInTheList != null)
+            {
+                instructorInTheList.I_FirstName = input.I_FirstName;
+                instructorInTheList.I_LastName = input.I_LastName;
+                instructorInTheList.I_Email = input.I_Email;
+                instructorInTheList.C_CourseId = input.C_CourseId;
+            }
         }
     }
 }

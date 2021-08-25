@@ -27,15 +27,6 @@ namespace CourseRegistrationApp.Controllers
         {
             var courses = _courseRepo.GetAllCourses();
             var list = _studentRepo.GetAllStudents()
-                .Select(s => 
-                {
-                    s.Course = courses.Where(c => c.C_CourseId == s.C_CourseId)
-                                      .FirstOrDefault() ?? new Course
-                                      {
-                                          C_CourseName = "N/A"
-                                      };
-                    return s;
-                })
                 .Select(s => _mapper.Map(s))
                 .ToList();
             return View(list);
@@ -46,7 +37,6 @@ namespace CourseRegistrationApp.Controllers
             var list = _courseRepo.GetAllCourses()
                 .Select(s => _mapper.Map(s))
                 .ToList();
-            ViewBag.Courses = new SelectList(list, "C_CourseId", "C_CourseName");
             return View();
         }
         [HttpPost]
@@ -62,7 +52,6 @@ namespace CourseRegistrationApp.Controllers
             var list2 = _courseRepo.GetAllCourses()
                 .Select(c => _mapper.Map(c))
                 .ToList();
-            ViewBag.Courses = new SelectList(list2, "C_CourseId", "C_CourseName");
             
             var studentToEdit = _mapper.Map(_studentRepo.GetStudentById(id));
             return View(studentToEdit);

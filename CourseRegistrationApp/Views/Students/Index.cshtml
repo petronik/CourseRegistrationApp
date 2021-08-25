@@ -27,9 +27,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.S_PhoneNumber)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.C_CourseId)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -50,10 +48,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.S_PhoneNumber)
-            </td>
-            <td>
-                @*@Html.DisplayFor(modelItem => item.C_CourseId)*@
-                @item.Course.C_CourseName
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.S_Id }) |

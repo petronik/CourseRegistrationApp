@@ -38,19 +38,19 @@
                     @Html.DisplayFor(modelItem => item.C_CourseNumber)
                 </td>
                 <td>
-                    <span style="cursor:pointer"
-                          data-toggle="modal" 
-                          data-target="#exampleModal"
-                          onclick="showStudents('@item.C_CourseId', '@item.C_CourseName')"
-                          >
-                        @Html.DisplayFor(modelItem => item.C_CourseName)
-                    </span>
+                    @Html.DisplayFor(modelItem => item.C_CourseName)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.C_CourseDescrip)
 
                 </td>
                 <td>
+                    <a href="#"
+                          data-toggle="modal" 
+                          data-target="#exampleModal" 
+                          onclick="addStudents(@item.C_CourseId, '@item.C_CourseName')">
+                    Add Student
+                    </a> |
                     @Html.ActionLink("Edit", "Edit", new { id = item.C_CourseId }) |
                     @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
                     @Html.ActionLink("Delete", "Delete", new { id = item.C_CourseId })
@@ -83,7 +83,7 @@
 
 <script>
 
-    function showStudents(id, name) {
+    @*function showStudents(id, name) {
         console.log(id);
 
         $.get("@Url.Action("GetStudentsByCourseId", "Courses")/" + id,
@@ -93,5 +93,15 @@
                 console.log(data.html );
             }
         );
+    }*@
+
+    function addStudents(id, name) {
+        const url = "@Url.Action("GetStudentsByCourseId", "Courses")/" + id;
+        $.get(url, function (data) {
+            console.log(data);
+            console.log(name);
+            $("#exampleModalLabel").html("List of Students for " + name)
+            $(".modal-body").html(data)
+        })
     }
 </script>

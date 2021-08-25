@@ -1,0 +1,45 @@
+﻿@model CourseRegistrationApp.ViewModel.SaveStudentsInCourseVM
+
+@using (Html.BeginForm("SaveStudents", "Courses"))
+            {
+<table class="table table-striped">
+    <thead>
+        <tr>
+            
+            <th>
+                Enrolled
+            </th>
+            <th>
+                First Name
+            </th>
+            <th>
+                Last Name
+            </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (Model != null)
+        {
+            for (var i = 0; i < Model.Student.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        @Html.CheckBoxFor(model => model.Student[i].IsActive)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => Model.Student[i].FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => Model.Student[i].LastName)
+                    </td>
+                </tr>
+                @Html.HiddenFor(mi => Model.Student[i].Id)
+            }
+            @Html.HiddenFor(mi => Model.CourseId)
+        }
+    </tbody>
+</table>
+
+<button  type="submit"  class="btn btn-primary">Save changes</button>
+}
