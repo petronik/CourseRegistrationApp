@@ -32,11 +32,11 @@ namespace CourseRegistrationApp.Controllers
                         .ToList();
             return View(list);
         }
-        //public IEnumerable<string> GetStudentsByCourseId(int? id)
+        //public IEnumerable<string> GetStudentsByCourse(int? id)
         //{
         //    var res = _studentRepo.GetAllStudents()
         //                           .Select(s => s.S_FirstName + " " + s.S_LastName + "<br>");
-        //    if(res == null || res.Count() == 0)
+        //    if (res == null || res.Count() == 0)
         //    {
         //        return new List<string> { "No Students On This Course." };
         //    }
@@ -61,6 +61,7 @@ namespace CourseRegistrationApp.Controllers
                     }
                 )
                 .ToList();
+
             SaveStudentsInCourseVM pvm = new SaveStudentsInCourseVM
             {
                 Student = students,
@@ -68,6 +69,22 @@ namespace CourseRegistrationApp.Controllers
             };
             
             return PartialView(pvm);
+        }
+
+        public ActionResult SaveStudents(SaveStudentsInCourseVM obj)
+        {
+            _studentCoursesRepo.RemoveRange(obj.CourseId);
+            var rangeToAdd = obj.Student
+                .Where(s => s.IsActive)
+                .Select(sc => new StudentCourse
+                {
+                    CourseId = obj.CourseId,
+                    StudentId = sc.Id
+                });
+
+            _studentCoursesRepo.AddRange(rangeToAdd);
+            _studentCoursesRepo.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Create()

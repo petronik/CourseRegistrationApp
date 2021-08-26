@@ -46,7 +46,7 @@ namespace CourseRegistrationApp.Data.SqlRepo
         public void RemoveRange(int courseId)
         {
             var rangeToRemove = _context.StudentCourses
-                .Where(sc => sc.StudentId == courseId);
+                .Where(sc => sc.CourseId == courseId);
             _context.RemoveRange(rangeToRemove);
         }
 
